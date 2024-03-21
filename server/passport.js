@@ -1,10 +1,8 @@
 // passport.js
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const { User } = require("./model/AuthModel");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const { User } = require("./model/AuthModel");
+const { User } = require("./model/Auth");
+
 const dotenv = require("dotenv");
 
 dotenv.config({ path: "./config.env" });

@@ -1,6 +1,6 @@
 // controllers/googleAuthController.js
 const jwt = require("jsonwebtoken");
-const { User } = require("../model/AuthModel");
+const { User } = require("../model/Auth");
 
 const handleGoogleAuthCallback = async (req, res) => {
   try {

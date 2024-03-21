@@ -78,7 +78,15 @@ function SignIn() {
               Show Password
             </label>
           </div>
+          <div className="flex items-center justify-between mt-5">
+            <a
+              href="/password-reset"
+              className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker">
+              Forgot Password?
+            </a>
+          </div>
         </div>
+
         <div className="flex items-center justify-between">
           <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

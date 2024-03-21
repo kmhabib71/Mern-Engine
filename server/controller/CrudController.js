@@ -1,71 +1,65 @@
-const Model = require("../models/Model");
-
-// Create a new record
-const createRecord = async (req, res) => {
+// Controller functions
+const create = async (Model) => async (req, res) => {
   try {
-    const newRecord = new Model(req.body);
-    await newRecord.save();
-    res.status(201).json(newRecord);
+    const newItem = await Model.create(req.body);
+    res.status(201).json(newItem);
   } catch (error) {
-    res.status(500).json({ error: "Failed to create record" });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Get all records
-const getAllRecords = async (req, res) => {
+const getAll = async (Model) => async (req, res) => {
   try {
-    const records = await Model.find();
-    res.status(200).json(records);
+    const items = await Model.find();
+    res.json(items);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch records" });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Get a single record by ID
-const getRecordById = async (req, res) => {
+const getById = async (Model) => async (req, res) => {
   try {
-    const record = await Model.findById(req.params.id);
-    if (!record) {
-      return res.status(404).json({ error: "Record not found" });
+    const item = await Model.findById(req.params.id);
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
     }
-    res.status(200).json(record);
+    res.json(item);
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch record" });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Update a record by ID
-const updateRecordById = async (req, res) => {
+const update = async (Model) => async (req, res) => {
   try {
-    const record = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    const updatedItem = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    if (!record) {
-      return res.status(404).json({ error: "Record not found" });
+    if (!updatedItem) {
+      return res.status(404).json({ error: "Item not found" });
     }
-    res.status(200).json(record);
+    res.json(updatedItem);
   } catch (error) {
-    res.status(500).json({ error: "Failed to update record" });
+    res.status(400).json({ error: error.message });
   }
 };
 
-// Delete a record by ID
-const deleteRecordById = async (req, res) => {
+const remove = async (Model) => async (req, res) => {
   try {
-    const record = await Model.findByIdAndDelete(req.params.id);
-    if (!record) {
-      return res.status(404).json({ error: "Record not found" });
+    const deletedItem = await Model.findByIdAndDelete(req.params.id);
+    if (!deletedItem) {
+      return res.status(404).json({ error: "Item not found" });
     }
-    res.status(200).json({ message: "Record deleted successfully" });
+    res.json({ message: "Item deleted successfully" });
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete record" });
+    res.status(400).json({ error: error.message });
   }
 };
 
+// Export controller functions
 module.exports = {
-  createRecord,
-  getAllRecords,
-  getRecordById,
-  updateRecordById,
-  deleteRecordById,
+  create,
+  getAll,
+  getById,
+  update,
+  remove,
 };

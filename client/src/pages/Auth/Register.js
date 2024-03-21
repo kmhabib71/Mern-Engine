@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import AuthService from "../../components/Services/AuthService";
 import { FcGoogle } from "react-icons/fc";
-import { handleGoogleSignIn } from "../../components/Auth/GoogleSignIn";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 

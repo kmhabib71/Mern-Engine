@@ -1,6 +1,6 @@
 // controllers/authController.js
 const jwt = require("jsonwebtoken");
-const { User } = require("../model/AuthModel");
+const { User } = require("../model/Auth");
 const bcrypt = require("bcrypt");
 
 const logout = (req, res) => {
